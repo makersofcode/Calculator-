@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Varela+Round&display=swap');
+
+    * {
+      font-family: 'Varela Round', sans-serif;
+    }
+
+    .parent-container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+    }
+
+    .child-contaier,
+    .schild-contaier {
+      width: 50%;
+    }
+
+    .sizeOfElements {
+      width: 20px;
+    }
+
+    .btn {
+      background-color: coral;
+    }
+
+    #firstNumber {
+      width: 60px;
+      margin-right: 10px;
+      height: 20px;
+
+      background-color: rgb(236, 245, 118);
+    }
+
+    #secondNumber {
+      width: 60px;
+      margin-right: 10px;
+      height: 20px;
+
+      background-color: rgb(236, 245, 118);
+    }
+
+    #oprator {
+      margin-right: 10px;
+      width: 60px;
+      height: 20px;
+
+      background-color: rgb(236, 245, 118);
+    }
+  </style>
+
+
+</head>
+
+<body style="background-color:lightblue">
+
+  <div class="parent-container">
+
+    <div class="child-contaier" id="child-container">
+      <div style="width:25%;display:flex;flex-direction:column;align-items: center;">
+
+        <div style="width:25%;display:flex;align-content: center;">
+          <h1>Calculator</h1>
+        </div>
+
+
+        <form style="width:25%;display:flex;flex-direction: row;justify-content:space-between;">
+
+          <div style="display: flex;flex-direction: row;align-items: center;"><label>Number1:</label> <input
+              type="string" id="firstNumber" /><br> </div>
+          <div style="display: flex;flex-direction: row;align-items: center;"><label>Number2:</label> <input
+              type="string" id="secondNumber" /><br></div>
+          <div style="display: flex;flex-direction: row;align-items: center;"><label>Operator:</label> <input
+              type="text" id="oprator" /><br></div>
+          <input class="btn" type="button" onClick="calculator()" Value="Calculate" />
+
+        </form>
+      </div>
+      <div style="display:flex;flex-direction: column;justify-content:center;align-items: center;">
+        <p style="display:flex;flex-direction: column;justify-content:center;align-items: center;" id="getlist"></p>
+      </div>
+
+    </div>
+
+    <div class="schild-contaier" id="schild-container">
+      <h2>with two values perform oprations like</h2>
+      <div style="display: flex;justify-content: space-evenly;">
+        <div>
+          <ul>
+            <h3>For addition you use this:</h3>
+            <li>Addition</li>
+            <li>addition</li>
+            <li>+</li>
+            <li>add</li>
+            <li>Add</li>
+
+
+          </ul>
+          <ul>
+            <h3>For Multiplication you use this:</h3>
+            <li>multiplication</li>
+            <li>Multiplication</li>
+            <li>mul</li>
+            <li>*</li>
+          </ul>
+          <ul>
+            <h3>For Power of you use this:</h3>
+            <li>Powerof</li>
+            <li>powerof</li>
+            <li>pwf</li>
+            <li>**</li>
+            <ul>
+        </div>
+        <div>
+          <ul>
+            <h3>For Substraction you use this:</h3>
+            <li>Minus</li>
+            <li>minus</li>
+            <li>-</li>
+            <li>sub</li>
+            <li>Sub</li>
+            <h3>For Division you use this:</h3>
+            <li>Division</li>
+            <li>division</li>
+            <li>div</li>
+            <li>Div</li>
+            <li>/</li>
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+<script>
+
+
+
+  let add = ["add", "addition", "plus", "+", "Addition", "Add"];
+  let minus = ["minus", "-", "sub", "substract", "Sub", "Substract", "Minus"];
+  let div = ["/", "div", "Div", "division", "Division"];
+  let mul = ["*", "mul", "Multiplication", "multiplication", "Mul"];
+  let pow = ["**", "pwf", "powerof", "Pwf"];
+  
+  let setAdd=true;
+  let setMinus=true;
+  let setDiv=true;
+  let setMult=true;
+  let setPow=true;
+    //let operators=["add", "addition", "plus", "+", "Addition","Add","minus", "-", "sub", "substract", "Sub", "Substract", "Minus","/", "div", "Div", "division", "Division","*", "mul", "Multiplication", "multiplication", "Mul","**", "pwf", "powerof", "Pwf"];
+
+  const calculator = () => {
+
+    var inputbox1 = document.getElementById("firstNumber").value;
+    var  inputbox2 = document.getElementById("secondNumber").value;
+    // let re=/^\d+[e]+$/;
+    console.log("input box value===="+inputbox1);
+     //let re = /^([0-9]+[e]+[0-9]|[0-9]|[0-9]+[\.]?[0-9]+[e]+[0-9])$/;
+      var re=/(^[0-9]+[e]+[0-9]|[0-9]|[0-9]+[\.]?[0-9]+[e]+[0-9])$/;
+    
+    if(re.test(inputbox1) && re.test(inputbox2))
+    {
+      var nm1 = parseFloat(inputbox1);
+      var nm2 = parseFloat(inputbox2);
+    }
+    else {
+      alert("please enter valid input")
+      totalans = [];
+    }
+    sym = document.getElementById("oprator").value;
+  
+    let addition;
+    let substraction;
+    let division;
+    let multiplication;
+    let powerof;
+    let exponent;
+    var toggle=[];
+    var totalans = [];
+    //creating unique array
+   // var uniqueArray = [];
+
+    //  const sym2=Array.from(sym);
+    // sym2.push(sym);
+    sym2 =[];
+    sym2 = sym.split(',');
+  
+    
+
+  //  console.log("value of nm1--"+nm1+"----"+nm2);
+
+  //   for (j = 0; j < sym2.length; j++) {
+  //     if (uniqueArray.indexOf(sym2[j]) === -1) {
+  //       uniqueArray.push(sym2[j]);
+
+  //     }
+  //   }
+    for (let i = 0; i < sym2.length; i++) 
+    {
+      //console.log("sym2[i]==="+i)
+      // if (inputbox1 !== null && inputbox2 !== null && sym !== null) 
+      // {
+        // if (add.findIndex(sym2)===true) 
+        if (add.includes(sym2[i])&&setAdd==true)
+        {
+          // if(setAdd==false)
+          // {
+          //   break;
+          // }   
+          //var value1 = inputbox1.substring(inputbox1.indexOf("e"));
+          // console.log("========firstooooo----="+value1);
+          if (inputbox1.includes("e")) 
+          {
+            let beforexpo1 = inputbox1.substr(0, inputbox1.indexOf('e'));
+            console.log("======before e =====" + beforexpo1);
+            // var afterexpo = value1.substring(1);
+            let afterexpo1 = inputbox1.split('e').pop();
+            console.log("after exponentn=====" + afterexpo1);
+            let firstValue = beforexpo1 * 10 ** afterexpo1;
+            console.log("-------f1---" + firstValue);
+
+            if (inputbox2.includes("e")) 
+            {
+              let beforexpo2 = inputbox2.substr(0, inputbox2.indexOf('e'));
+              console.log("------before expo 2===----" + beforexpo2);
+              let afterexpo2 = inputbox2.split('e').pop();
+              console.log("after expo======" + afterexpo2);
+              let secondValue = beforexpo2 * 10 ** afterexpo2;
+              // exponent=firstValue+secondValue;
+              totalans.push("Addition is:" + (firstValue + secondValue));
+            }
+
+          }
+          else 
+          {
+            //addition = nm1 + nm2; 
+            //console.log("first------2333----"+sym)
+            totalans.push("Addition is:" + (nm1 + nm2));
+            //add=[];
+            console.log("-------nm1====" + nm1 + "====" + nm2)
+            //multiplication.style.display='block';
+            setAdd=false;
+          }
+        }
+        else if(minus.includes(sym2[i])&&setMinus==true) 
+        {
+          // if(setMinus==false)
+          // {
+          //   break;
+          // }
+          //substraction = nm1 - nm2;
+          totalans.push("Substraction is:" + (nm1 - nm2))
+          //minus=[]
+          setMinus=false;
+        
+        }
+        else if(div.includes(sym2[i])&&setDiv==true) 
+        {
+        //  if(setDiv==false)
+        //  {
+        //    break;
+        //  }
+          // division = nm1 / nm2;
+          if (nm1 / nm2 == Infinity) {
+            totalans.push("we can not devide any number using zero");
+          }
+          else {
+            totalans.push("Division is:" + (nm1 / nm2));
+            //div=[];
+            setdiv=false;
+          }
+
+        }
+
+        // powerof= nm1 ** nm2;
+
+        else if(pow.includes(sym2[i])&&pow==true) 
+        {
+          if(pow==false)
+          {
+            break;
+          }
+          totalans.push("Powerof:" + (nm1 ** nm2));
+          //pow=[]; 
+          // uniqueArray=[];
+          setPow=false;
+        }
+        else if(mul.includes(sym2[i])&&setMult==true) 
+        {
+          // if(setMult==false)
+          // {
+          //   break;
+          // }
+
+            totalans.push("Multiplication is:" + (nm1 * nm2));
+            setMult=false;
+        }
+        else
+        {
+          //alert("value is not proper")
+        }
+      
+    }
+    if (isNaN(nm1) || isNaN(nm2) || isNaN(nm1) && isNaN(nm2)) {
+      alert("number input is empty")
+      totalans = [];
+      
+    }
+    var arr = ['Addition is:', 'Substraction is:', 'Division is:', 'Multiplication is:', 'Powerof:', 'Exponent is:'];
+
+
+    var cont = document.getElementById('getlist');
+
+    // create ul element and set the attributes.
+    var ul = document.createElement('ul');
+    ul.setAttribute('style', 'padding: 0; margin: 0;');
+    ul.setAttribute('id', 'theList');
+
+    for (i = 0; i <= totalans.length - 1; i++) {
+
+      var li = document.createElement('li');     // create li element.
+      li.innerHTML = totalans[i];      // assigning text to li using array value.
+      li.setAttribute('style', 'display: block;');    // remove the bullets.
+      console.log("-----kkkkk------" + totalans);
+      ul.appendChild(li);     // append li to ul.
+
+
+    }
+
+    cont.appendChild(ul);
+  }
+
+</script>
+
+</html>
